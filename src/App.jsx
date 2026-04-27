@@ -14,7 +14,7 @@ import Appointments from "./pages/Appointments";
 import { CircleChevronUp } from "lucide-react";
 import VerifyPaymentPage from "../VerifyPaymentPage";
 import VerifyServicePaymentPage from "../VerifyServicePaymentPage";
-import cors from "cors";
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -23,11 +23,7 @@ const ScrollToTop = () => {
   }, [pathname]);
   return null;
 };
-app.use(
-  cors({
-    origin: "*",
-  }),
-);
+
 const ScrollButton = () => {
   const [visible, setVisible] = useState(false);
 
