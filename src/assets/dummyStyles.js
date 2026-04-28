@@ -719,27 +719,38 @@ export const navbarStyles = {
   // Content wrapper
   contentWrapper:
     "max-w-7xl font-[pacifico] md:px-2 mx-auto px-4 sm:px-6 lg:px-8",
-  flexContainer: "flex items-center justify-between h-20",
-
-  // Logo section
-  logoLink: "flex items-center gap-3 -ml-3 sm:-ml-4",
-  logoContainer:
-    "relative group w-20 h-20 sm:w-24 sm:h-24 lg:w-15 lg:h-15 xl:w-32 xl:h-32",
-  logoImageWrapper:
-    "relative flex items-center justify-center overflow-hidden p-2 mx-1 h-full w-full",
-  logoImage:
-    "w-14 h-14 sm:w-18 sm:h-18 lg:w-15 lg:h-15 xl:w-24 xl:h-24 md:w-20 md:h-20 object-contain",
-  logoTextContainer: "block sm:block",
-  logoTitle:
-    "text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-emerald-600 to-green-600 tracking-tight",
-  logoSubtitle: "text-xs lg:text-xs text-gray-500",
+  // flexContainer: "flex items-center justify-between h-20",
+  flexContainer: "flex items-center justify-between min-h-[70px] py-2",
+  // // Logo section
+  // logoLink: "flex items-center gap-3 -ml-3 sm:-ml-4",
+  // logoContainer:
+  //   "relative group w-20 h-20 sm:w-24 sm:h-24 lg:w-15 lg:h-15 xl:w-32 xl:h-32",
+  // logoImageWrapper:
+  //   "relative flex items-center justify-center overflow-hidden p-2 mx-1 h-full w-full",
+  // logoImage:
+  //   "w-14 h-14 sm:w-18 sm:h-18 lg:w-15 lg:h-15 xl:w-24 xl:h-24 md:w-20 md:h-20 object-contain",
+  // logoTextContainer: "block sm:block",
+  // logoTitle:
+  //   "text-2xl md:text-2xl lg:text-2xl xl:text-2xl font-bold bg-clip-text text-transparent bg-linear-to-r from-emerald-600 to-green-600 tracking-tight",
+  // logoSubtitle: "text-xs lg:text-xs text-gray-500",
+  logoContainer: "flex items-center gap-2",
+  logoImageWrapper: "flex items-center justify-center",
+  logoImage: "w-10 h-10 sm:w-12 sm:h-12 object-contain",
+  logoTextContainer: "flex flex-col leading-tight",
+  logoTitle: "text-lg sm:text-xl font-bold text-emerald-600",
+  logoSubtitle: "text-[10px] sm:text-xs text-gray-500",
+  logoLink: "flex items-center gap-2",
 
   // Desktop navigation
-  desktopNav: "hidden lg:-mx-5 lg:flex items-center gap-2",
+  desktopNav: "hidden lg:flex items-center",
   navItemsContainer:
-    "flex gap-1 bg-white border border-emerald-200 p-1 rounded-full shadow-lg",
-  navItem:
-    "nav-item px-5 md:px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300",
+    "flex gap-2 bg-white border border-emerald-200 px-2 py-1 rounded-full shadow-sm",
+  navItem: "px-4 py-2 rounded-full text-sm font-medium transition",
+  // desktopNav: "hidden lg:-mx-5 lg:flex items-center gap-2",
+  // navItemsContainer:
+  //   "flex gap-1 bg-white border border-emerald-200 p-1 rounded-full shadow-lg",
+  // navItem:
+  //   "nav-item px-5 md:px-4 py-2.5 rounded-full text-sm font-semibold transition-all duration-300",
   navItemActive: "active",
   navItemInactive: "text-gray-700 hover:text-emerald-600",
 
@@ -762,19 +773,19 @@ export const navbarStyles = {
 
   // Mobile menu
   mobileMenu:
-    "mobile-menu lg:hidden pb-4 space-y-2 border-t border-emerald-100 pt-4",
+    "absolute left-0 top-full w-full bg-white border-t border-emerald-100 shadow-md p-4 space-y-3 z-50",
   mobileMenuItem:
-    "block px-4 py-2.5 rounded-lg text-sm font-semibold transition-all duration-300",
+    "block px-4 py-3 rounded-xl text-sm font-medium transition-all",
   mobileMenuItemActive: "bg-emerald-500 text-white",
   mobileMenuItemInactive:
     "text-gray-700 hover:bg-emerald-50 hover:text-emerald-600",
 
   // Mobile signed out buttons
   mobileDoctorAdminButton:
-    "w-full flex items-center justify-center gap-2 py-2.5 rounded-full border border-emerald-200 bg-white text-sm font-semibold hover:bg-emerald-50 transition-all",
+    "w-full text-center py-3 rounded-xl border border-emerald-200 bg-white text-sm font-medium hover:bg-emerald-50 transition",
   mobileLoginContainer: "w-full mt-3",
   mobileLoginButton:
-    "w-full cursor-default md:rounded-full flex items-center justify-center gap-2 bg-linear-to-r from-emerald-500 to-green-600 text-white py-2.5 rounded-lg font-semibold hover:shadow-lg transition-all",
+    "w-full py-3 px-2 rounded-xl bg-emerald-500 text-white font-medium",
 
   // Animation styles (to be added via style tag)
   animationStyles: `

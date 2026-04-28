@@ -15,6 +15,18 @@ import { CircleChevronUp } from "lucide-react";
 import VerifyPaymentPage from "../VerifyPaymentPage";
 import VerifyServicePaymentPage from "../VerifyServicePaymentPage";
 
+// admin imports
+import RequireAuth from "./admin/RequireAuth";
+import AdminLogin from "./admin/pages/Login";
+import AdminHome from "./admin/pages/Home";
+import AdminAdd from "./admin/pages/Add";
+import AdminList from "./admin/pages/List";
+import AdminAppointments from "./admin/pages/Appoinments";
+import AdminSerDashboard from "./admin/pages/SerDashboard";
+import AdminAddSer from "./admin/pages/AddSer";
+import AdminListService from "./admin/pages/ListService";
+import AdminSerAppointments from "./admin/pages/SerAppointments";
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -91,6 +103,73 @@ const App = () => {
           <Route
             path="/service-appointment/cancel"
             element={<VerifyServicePaymentPage />}
+          />
+
+          {/* admin routes */}
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <RequireAuth>
+                <AdminHome />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/add-doctor"
+            element={
+              <RequireAuth>
+                <AdminAdd />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/list-doctors"
+            element={
+              <RequireAuth>
+                <AdminList />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/appointments"
+            element={
+              <RequireAuth>
+                <AdminAppointments />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/service-dashboard"
+            element={
+              <RequireAuth>
+                <AdminSerDashboard />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/add-service"
+            element={
+              <RequireAuth>
+                <AdminAddSer />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/list-service"
+            element={
+              <RequireAuth>
+                <AdminListService />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/service-appointments"
+            element={
+              <RequireAuth>
+                <AdminSerAppointments />
+              </RequireAuth>
+            }
           />
         </Routes>
       </div>

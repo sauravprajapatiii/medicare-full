@@ -208,7 +208,7 @@ const Footer = () => {
           <div className={fs.designerText}>
             <span>Designed by</span>
             <a href="//" target="_blank" className={fs.designerLink}>
-              desinger
+              saurav
             </a>
           </div>
         </div>

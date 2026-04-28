@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { navbarStyles } from "../assets/dummyStyles";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { useClerk, SignedOut, SignedIn, UserButton } from "@clerk/clerk-react"; // Added imports
+import { useClerk, SignedOut, SignedIn, UserButton } from "@clerk/clerk-react";
 import logo from "../assets/logo.png";
 import { Key, Menu, User, X } from "lucide-react";
 
@@ -59,7 +59,6 @@ const Navbar = () => {
     { label: "Contact", href: "/contact" },
   ];
 
-  // Helper to handle Doctor Logout
   const handleDoctorLogout = () => {
     localStorage.removeItem(STORAGE_KEY);
     setIsDoctorLoggedIn(false);
@@ -75,8 +74,6 @@ const Navbar = () => {
       >
         <div className={navbarStyles.contentWrapper}>
           <div className={navbarStyles.flexContainer}>
-            {/* logo */}
-
             <Link to="/" className={navbarStyles.logoLink}>
               <div className={navbarStyles.logoContainer}>
                 <div className={navbarStyles.logoImageWrapper}>
@@ -86,14 +83,12 @@ const Navbar = () => {
                     className={navbarStyles.logoImage}
                   />
                 </div>
-              </div>
-
-              <div className={navbarStyles.logoTextContainer}>
-                <h1 className={navbarStyles.logoTitle}>MediCare</h1>
-
-                <p className={navbarStyles.logoSubtitle}>
-                  Healthcare Solutions
-                </p>
+                <div className={navbarStyles.logoTextContainer}>
+                  <h1 className={navbarStyles.logoTitle}>MediCare</h1>
+                  <p className={navbarStyles.logoSubtitle}>
+                    Healthcare Solutions
+                  </p>
+                </div>
               </div>
             </Link>
 
@@ -101,7 +96,6 @@ const Navbar = () => {
               <div className={navbarStyles.navItemsContainer}>
                 {navItems.map((item) => {
                   const isActive = location.pathname === item.href;
-
                   return (
                     <Link
                       key={item.href}
@@ -115,22 +109,22 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* rightside */}
-
             <div className={navbarStyles.rightContainer}>
               <SignedOut>
+                <Link to="/admin" className={navbarStyles.doctorAdminButton}>
+                  <User className={navbarStyles.doctorAdminIcon} />
+                  <span className={navbarStyles.doctorAdminText}>Admin</span>
+                </Link>
+
                 <Link
                   to="/doctor-admin/login"
                   className={navbarStyles.doctorAdminButton}
                 >
                   <User className={navbarStyles.doctorAdminIcon} />
-
                   <span className={navbarStyles.doctorAdminText}>
                     Doctor Admin
                   </span>
                 </Link>
-
-                {/* patient */}
 
                 <button
                   onClick={() => clerk.openSignIn()}
@@ -143,7 +137,6 @@ const Navbar = () => {
               <SignedIn>
                 <UserButton afterSignOutUrl="/" />
               </SignedIn>
-              {/* to toggle for mobile */}
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className={navbarStyles.mobileToggle}
@@ -155,47 +148,57 @@ const Navbar = () => {
                 )}
               </button>
             </div>
+            {isOpen && (
+              <div className={navbarStyles.mobileMenu}>
+                {navItems.map((item, index) => {
+                  const isActive = location.pathname === item.href;
+                  return (
+                    <Link
+                      key={index}
+                      to={item.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`${navbarStyles.mobileMenuItem} ${isActive ? navbarStyles.mobileMenuItemActive : navbarStyles.mobileMenuItemInactive}`}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+                <SignedOut>
+                  <div className="mt-4 p-3 rounded-2xl bg-gray-50 border border-emerald-100 space-y-2">
+                    <p className="text-xs text-gray-500 px-1">Admin Access</p>
+
+                    <Link
+                      to="/admin"
+                      onClick={() => setIsOpen(false)}
+                      className="block w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:shadow-sm transition"
+                    >
+                      🛠️ Admin Panel
+                    </Link>
+
+                    <Link
+                      to="/doctor-admin/login"
+                      onClick={() => setIsOpen(false)}
+                      className="block w-full px-4 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:shadow-sm transition"
+                    >
+                      👨‍⚕️ Doctor Panel
+                    </Link>
+                  </div>
+                  <div className={navbarStyles.mobileLoginContainer}>
+                    <button
+                      onClick={() => {
+                        setIsOpen(false);
+                        clerk.openSignIn();
+                      }}
+                      className={navbarStyles.mobileLoginButton}
+                    >
+                      Login
+                    </button>
+                  </div>
+                </SignedOut>
+              </div>
+            )}
           </div>
-          {/* mobile navigation menu */}
-          {isOpen && (
-            <div className={navbarStyles.mobileMenu}>
-              {navItems.map((item, index) => {
-                const isActive = location.pathname === item.href;
-                return (
-                  <Link
-                    key={index}
-                    to={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`${navbarStyles.mobileMenuItem} ${isActive ? navbarStyles.mobileMenuItemActive : navbarStyles.mobileMenuItemInactive}`}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-              <SignedOut>
-                <Link
-                  to="/doctor-admin/login"
-                  className={navbarStyles.mobileDoctorAdminButton}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Doctor Admin
-                </Link>
-                <div className={navbarStyles.mobileLoginContainer}>
-                  <button
-                    onClick={() => {
-                      setIsOpen(false);
-                      clerk.openSignIn();
-                    }}
-                    className={navbarStyles.mobileLoginButton}
-                  >
-                    Login
-                  </button>
-                </div>
-              </SignedOut>
-            </div>
-          )}
         </div>
-        {/* <style>{navbarStyles.animationStyles}</style> */}
       </nav>
     </>
   );

@@ -74,7 +74,8 @@ export default function EditProfilePage({ apiBase }) {
     async function fetchDoctor() {
       try {
         setLoading(true);
-        const res = await fetch(`${API_BASE}/${id}`);
+        // const res = await fetch(`${API_BASE}/${id}`);
+        const res = await fetch(`${API_BASE}/api/doctors/${id}`);
         const json = await res.json();
         if (!res.ok) throw new Error(json?.message || "Failed to fetch doctor");
         const d = json.data || json || {};
@@ -181,7 +182,8 @@ export default function EditProfilePage({ apiBase }) {
   const handleReset = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE}/${id}`);
+      // const res = await fetch(`${API_BASE}/${id}`);
+      const res = await fetch(`${API_BASE}/api/doctors/${id}`);
       const json = await res.json();
       if (!res.ok) throw new Error(json?.message || "Failed to fetch");
       const d = json.data || json || {};
@@ -237,17 +239,41 @@ export default function EditProfilePage({ apiBase }) {
       const token = localStorage.getItem(STORAGE_KEY);
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
-      const res = await fetch(`${API_BASE}/${id}`, {
+      // const res = await fetch(`${API_BASE}/${id}`, {
+      //   method: "PUT",
+      //   headers,
+      //   body: form,
+      // });
+      // const res = await fetch(`${API_BASE}/api/doctors/${id}`, {
+      //   method: "PUT",
+      //   headers,
+      //   body: form,
+      // });
+      // // const text = await res.text();
+      // // console.log("RAW RESPONSE:", text);
+      // const json = await res.json();
+      // if (!res.ok) {
+      //   throw new Error(json?.message || "Failed to save");
+      // }
+      const res = await fetch(`${API_BASE}/api/doctors/${id}`, {
         method: "PUT",
         headers,
         body: form,
       });
 
-      const json = await res.json();
+      const text = await res.text();
+      console.log("RAW RESPONSE:", text);
+
+      let json;
+      try {
+        json = JSON.parse(text);
+      } catch {
+        throw new Error("Server crashed (non-JSON response)");
+      }
+
       if (!res.ok) {
         throw new Error(json?.message || "Failed to save");
       }
-
       const updated = json.data || json;
       updated.schedule = dedupeAndSortSchedule(updated.schedule || {});
       setDoc(updated);

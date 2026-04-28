@@ -17,7 +17,8 @@ import {
 } from "lucide-react";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { Toaster } from "react-hot-toast";
-const API_BASE = "http://localhost:4000";
+// const API_BASE = "http://localhost:4000";
+const API_BASE = import.meta.env.VITE_API_URL;
 
 // const API = axios.create({ baseURL: API_BASE });
 const API = axios.create({ baseURL: API_BASE });
