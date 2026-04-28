@@ -35,34 +35,23 @@ const Footer = () => {
 
   const socialLinks = [
     {
-      Icon: FaFacebookF,
+      Icon: Mail,
       color: fs.facebookColor,
-      name: "Facebook",
-      href: "https://www.facebook.com/people/Hexagon-Digital-Services/61567156598660/",
+      name: "Email",
+      href: "sauravprajapati1411@gmail.com",
     },
-    {
-      Icon: CiTwitter,
-      color: fs.twitterColor,
-      name: "Twitter",
-      href: "https://www.linkedin.com/company/hexagondigtial-services/",
-    },
+
     {
       Icon: FaInstagram,
       color: fs.instagramColor,
       name: "Instagram",
-      href: "http://instagram.com/hexagondigitalservices?igsh=MWp2NG1oNTlibWVnZA%3D%3D",
+      href: "https://www.instagram.com/sauravcodex?igsh=MWlkbDJkbWJwcTByNg==",
     },
     {
       Icon: FaLinkedin,
       color: fs.linkedinColor,
       name: "LinkedIn",
-      href: "https://www.linkedin.com/company/hexagondigtial-services/",
-    },
-    {
-      Icon: FaYoutube,
-      color: fs.youtubeColor,
-      name: "YouTube",
-      href: "https://youtube.com/@hexagondigitalservices?si=lxEFYNCP42t6AoDJ",
+      href: "https://www.linkedin.com/in/saurav-prajapati-940529404?utm_source=share_via&utm_content=profile&utm_medium=member_android",
     },
   ];
 
